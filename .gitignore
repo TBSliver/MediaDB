@@ -1,0 +1,5 @@
+blib/
+inc/
+Makefile
+META.*
+MYMETA.*
