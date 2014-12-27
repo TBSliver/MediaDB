@@ -29,4 +29,20 @@ belongs_to(
 
 might_have( 'location' => 'MediaDB::Schema::Result::MovieLocation', 'movie_id' );
 
+sub add_location {
+  my ( $self, $location_id ) = @_;
+
+  my $location_obj = $self->user->locations->find(
+    {
+      location_id => $location_id
+    }
+  );
+
+  return undef unless $location_obj;
+
+  $location_obj->location->add_movie( $self->id );
+
+  return $location_obj;
+}
+
 1;

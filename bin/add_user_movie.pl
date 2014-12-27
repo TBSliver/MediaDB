@@ -21,7 +21,7 @@ unless (
      defined $user
   && defined $movie
 ) {
-  die "You must define user and movie arguments"
+  die "Usage: add_user_movie --user <username> --movie <movie name>";
 }
 
 my @db_conn_info = ( "dbi:SQLite:$Bin/../mediadb.db" );

@@ -24,7 +24,7 @@ unless (
   && defined $email
   && defined $password
 ) {
-  die "You must define all 3 arguments"
+  die "Usage: add_user.pl --user <username> --email <email_address> --password <password>";
 }
 
 my @db_conn_info = ( "dbi:SQLite:$Bin/../mediadb.db" );

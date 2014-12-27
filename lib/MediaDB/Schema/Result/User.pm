@@ -51,4 +51,31 @@ sub add_movie {
   );
 }
 
+sub add_location {
+  my ( $self, $name ) = @_;
+
+  my $location = $self->result_source->schema->resultset( 'Location' )->create(
+    {
+      name => $name,
+      admin_id => $self->id,
+    }
+  );
+
+  $location->add_user( $self->username );
+
+  return $location->id;
+}
+
+sub get_location {
+  my ( $self, $location_id ) = @_;
+
+  my $location = $self->owned_locations(
+    {
+      id => $location_id
+    }
+  )->first;
+
+  return $location;
+}
+
 1;
