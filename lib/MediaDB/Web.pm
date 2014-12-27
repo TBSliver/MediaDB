@@ -20,6 +20,7 @@ use Catalyst qw/
   -Debug
   ConfigLoader
   Static::Simple
+  Authentication
 /;
 
 extends 'Catalyst';
@@ -48,7 +49,22 @@ __PACKAGE__->config(
       'ui',
       'lib',
     ]
-  }
+  },
+
+  'Plugin::Authentication' => {
+    default_realm => 'people',
+    people  => {
+      credential => {
+        class => 'Password',
+        password_field => 'password',
+        password_type  => 'self_check',
+      },
+      store => {
+        class => 'DBIx::Class',
+        user_model => 'DB::User',
+      },
+    },
+  },
 );
 
 # Start the application

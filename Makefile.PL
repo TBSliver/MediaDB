@@ -20,6 +20,11 @@ requires 'Config::General'; # This should reflect the config file format you've 
 
 requires 'DBIx::Class';
 requires 'DBIx::Class::Candy';
+requires 'DBIx::Class::PassphraseColumn';
+requires 'Catalyst::Plugin::Authentication';
+requires 'Authen::Passphrase::BlowfishCrypt';
+requires 'Catalyst::Authentication::Store::DBIx::Class';
+requires 'DBIx::Class::DeploymentHandler';
 
 test_requires 'Test::More' => '0.88';
 catalyst;

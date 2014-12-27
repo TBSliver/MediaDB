@@ -3,3 +3,4 @@ inc/
 Makefile
 META.*
 MYMETA.*
+mediadb.db
