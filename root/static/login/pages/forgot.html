@@ -1,0 +1,15 @@
+<div class="jumbotron text-center">
+  <h1>Forgotten Your Password?</h1>
+  <p>Enter your email address below</p>
+</div>
+<div class="forgot-form">
+  <form ng-submit="processForgot()" name="forgotForm" novalidate>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+        <input id="email" name="email" class="form-control" type="email" placeholder="Email" ng-model="creds.email" required />
+      </div>
+    </div>
+    <button id="btn_forgot" ng-disabled="forgotForm.$invalid" class="btn btn-primary btn-block" type="submit">Reset Password</button>
+  </form>
+</div>

@@ -31,6 +31,8 @@ requires 'Cpanel::JSON::XS';
 requires 'Catalyst::Plugin::Session';
 requires 'Catalyst::Plugin::Session::State::Cookie';
 requires 'Catalyst::Plugin::Session::Store::FastMmap';
+requires 'Catalyst::View::Email::Template';
+requires 'Catalyst::View::TT';
 
 
 test_requires 'Test::More' => '0.88';

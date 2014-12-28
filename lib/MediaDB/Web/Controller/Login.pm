@@ -1,6 +1,7 @@
 package MediaDB::Web::Controller::Login;
 use Moose;
 use namespace::autoclean;
+use String::Random qw(random_regex);
 use JSON::MaybeXS qw/ JSON /;
 
 BEGIN { extends 'Catalyst::Controller'; }
@@ -51,6 +52,74 @@ sub do :Local {
     $c->forward('View::JSON');
   }
 
+}
+
+sub reset_password :Local {
+  my ( $self, $c ) = @_;
+
+  my $email = $c->request->body_data->{email};
+
+  my $user = $c->model('DB::User')->find(
+    {
+      email => $email
+    }
+  );
+
+  if ($user) {
+    my $code = random_regex('\w{64}');
+
+    $user->set_password_code($code);
+    $user->update;
+    $user->discard_changes;
+
+    $c->stash->{set_password_code} = $code;
+    $c->stash->{portal_addr}       = $c->uri_for('/');
+
+    $c->stash->{email} = {
+      to           => $user->email,
+      from         => $c->config->{email}->{from_address},
+      subject      => "Password reset for MediaDB",
+      template     => 'forgot_password.tt',
+    };
+
+    $c->log->info( "Password set code for " . $user->username . " : " . $code );
+
+    $c->stash->{data} = { success => JSON->true };
+
+    $c->forward('View::Email');
+  }
+
+  $c->detach('View::JSON');
+}
+
+sub set_password :Local {
+  my ( $self, $c ) = @_;
+
+  my $code = $c->request->body_data->{set_password_code};
+  my $password = $c->request->body_data->{password};
+
+  my $user = $c->model('DB::User')->find(
+    {
+      set_password_code => $code
+    }
+  );
+
+  if ($user) {
+    $user->password($password);
+    $user->set_password_code(undef);
+    $user->update;
+
+    $c->authenticate({ username => $user->username, password => $password });
+
+    $c->stash->{data} = {
+      success => JSON->true,
+      redirect => '/app',
+    };
+  } else {
+    $c->stash->{data} = { success => JSON->false };
+  }
+
+  $c->detach('View::JSON');
 }
 
 =encoding utf8
