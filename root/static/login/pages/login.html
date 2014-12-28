@@ -1,0 +1,24 @@
+<div class="jumbotron text-center">
+  <h1>MediaDB</h1>
+  <p>Please log in below</p>
+</div>
+<div class="login-form">
+  <form ng-submit="processLogin()" name="loginForm" novalidate>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+        <input id="username" name="username" class="form-control" type="text" placeholder="Username" ng-model="creds.username" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+        <input id="password" name="password" class="form-control" type="password" placeholder="Password" ng-model="creds.password" required />
+      </div>
+    </div>
+    <div class="input-group">
+      <button id="btn_login" ng-disabled="loginForm.$invalid" class="btn btn-primary btn-block" type="submit">Login</button>
+      <span class="input-group-addon"><a href="#forgot">forgot?</a></span>
+    </div>
+  </form>
+</div>

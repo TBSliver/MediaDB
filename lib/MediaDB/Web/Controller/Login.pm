@@ -1,6 +1,7 @@
 package MediaDB::Web::Controller::Login;
 use Moose;
 use namespace::autoclean;
+use JSON::MaybeXS qw/ JSON /;
 
 BEGIN { extends 'Catalyst::Controller'; }
 
@@ -25,8 +26,31 @@ sub index :Path :Args(0) {
   my ( $self, $c ) = @_;
 
   $c->serve_static_file(
-    $c->path_to('root', 'login', 'index.html')
+    $c->path_to('root', 'static', 'login', 'index.html')
   );
+}
+
+sub do :Local {
+  my ($self, $c ) = @_;
+
+  my $username = $c->request->body_data->{username};
+  my $password = $c->request->body_data->{password};
+
+  if ($c->authenticate({ username => $username, password => $password })) {
+    # Remove set password code on successful login
+    $c->user->set_password_code(undef);
+    $c->user->update;
+
+    $c->stash->{data} = {
+      success  => JSON->true,
+      redirect => "/app",
+    };
+    $c->forward('View::JSON');
+  } else {
+    $c->stash->{data} = { success => JSON->false };
+    $c->forward('View::JSON');
+  }
+
 }
 
 =encoding utf8

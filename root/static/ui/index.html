@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MediaDB">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Include all the libraries -->
+    <script src="static/lib/angular/angular.min.js"></script>
+    <script src="static/lib/angular/angular-route.min.js"></script>
+    <script src="static/lib/angular/angular-route-styles.min.js"></script>
+    <script src="static/lib/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <link href="static/lib/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="static/lib/pocketgrid/pocketgrid.min.css" rel="stylesheet" />
+    <link href="static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom code includes -->
+    <script src="static/ui/js/app.js"></script>
+    <script src="static/ui/js/controller.home.js"></script>
+    <script src="static/ui/js/controller.error404.js"></script>
+    <link href="static/ui/css/index.css" rel="stylesheet" />
+
+    <title>MediaDB</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">MediaDB</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+          <li><a href="#settings"><i class="fa fa-cog"></i> Settings</a></li>
+          <li><a href="/app/logout"><i class="fa fa-shield fa-lg"></i> Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Insertion Point for templates -->
+    <div class="content block-group" ng-view></div>
+  </body>
+</html>
+

@@ -10,13 +10,13 @@ angular
 
     $routeProvider
       .when('/', {
-        templateUrl : 'login/pages/login.html',
-        controller  : 'mainController',
-        css         : 'login/css/login.css'
+        templateUrl : 'static/login/pages/login.html',
+        controller  : 'loginController',
+        css         : 'static/login/css/login.css'
       })
       // someone typed in the wrong thing
       .otherwise({
-        templateUrl : 'ui/pages/error404.html',
+        templateUrl : 'static/login/pages/error404.html',
         controller  : 'error404Controller'
       });
   });

@@ -31,6 +31,12 @@ column password => {
   passphrase_check_method => 'check_password',
 };
 
+column set_password_code => {
+  data_type   => 'varchar',
+  size        => 80,
+  is_nullable => 1,
+};
+
 has_many('movies' => 'MediaDB::Schema::Result::UserMovie', 'user_id');
 has_many('locations' => 'MediaDB::Schema::Result::UserLocation', 'user_id');
 has_many('owned_locations' => 'MediaDB::Schema::Result::Location', 'admin_id');

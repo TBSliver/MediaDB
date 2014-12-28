@@ -21,6 +21,9 @@ use Catalyst qw/
   ConfigLoader
   Static::Simple
   Authentication
+  Session
+  Session::Store::FastMmap
+  Session::State::Cookie
 /;
 
 extends 'Catalyst';
@@ -46,9 +49,6 @@ __PACKAGE__->config(
     ignore_extensions => [ qw/tt tt2/ ],
     dirs => [
       'static',
-      'ui',
-      'login',
-      'lib',
     ]
   },
 

@@ -26,11 +26,18 @@ sub index :Path :Args(0) {
 
   if ( $c->user_exists ) {
     $c->serve_static_file(
-      $c->path_to('root', 'ui', 'index.html')
+      $c->path_to('root', 'static', 'ui', 'index.html')
     );
   } else {
     $c->res->redirect( $c->uri_for( '/login' ) );
   }
+}
+
+sub logout :Local {
+  my ( $self, $c ) = @_;
+
+  $c->logout;
+  $c->res->redirect( $c->uri_for( '/login' ) );
 }
 
 =encoding utf8
