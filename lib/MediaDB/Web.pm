@@ -25,7 +25,7 @@ use Catalyst qw/
 
 extends 'Catalyst';
 
-our $VERSION = '0.01';
+our $VERSION = '0.001';
 
 # Configure the application.
 #
@@ -47,6 +47,7 @@ __PACKAGE__->config(
     dirs => [
       'static',
       'ui',
+      'login',
       'lib',
     ]
   },
@@ -64,6 +65,10 @@ __PACKAGE__->config(
         user_model => 'DB::User',
       },
     },
+  },
+
+  'View::JSON' => {
+    expose_stash => [ qw/ data status messages / ],
   },
 );
 

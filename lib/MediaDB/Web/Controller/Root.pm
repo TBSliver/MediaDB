@@ -31,9 +31,11 @@ The root page (/)
 sub index :Path :Args(0) {
   my ( $self, $c ) = @_;
 
-  $c->serve_static_file(
-    $c->path_to('root', 'ui', 'index.html')
-  );
+  if ( $c->user_exists ) {
+    $c->res->redirect( $c->uri_for( '/app' ) );
+  } else {
+    $c->res->redirect( $c->uri_for( '/login' ) );
+}
 }
 
 =head2 default
@@ -54,7 +56,13 @@ Attempt to render a view, if needed.
 
 =cut
 
-sub end : ActionClass('RenderView') {}
+sub end : ActionClass('RenderView') {
+  my ($self, $c) = @_;
+
+  if ( $c->request->path =~ /^api\// ) {
+    $c->forward('View::JSON');
+  }
+}
 
 =head1 AUTHOR
 

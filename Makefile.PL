@@ -25,6 +25,9 @@ requires 'Catalyst::Plugin::Authentication';
 requires 'Authen::Passphrase::BlowfishCrypt';
 requires 'Catalyst::Authentication::Store::DBIx::Class';
 requires 'DBIx::Class::DeploymentHandler';
+requires 'Catalyst::View::JSON';
+requires 'JSON::MaybeXS';
+requires 'Cpanel::JSON::XS';
 
 test_requires 'Test::More' => '0.88';
 catalyst;
