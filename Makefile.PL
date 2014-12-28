@@ -28,6 +28,10 @@ requires 'DBIx::Class::DeploymentHandler';
 requires 'Catalyst::View::JSON';
 requires 'JSON::MaybeXS';
 requires 'Cpanel::JSON::XS';
+requires 'Catalyst::Plugin::Session';
+requires 'Catalyst::Plugin::Session::State::Cookie';
+requires 'Catalyst::Plugin::Session::Store::FastMmap';
+
 
 test_requires 'Test::More' => '0.88';
 catalyst;
