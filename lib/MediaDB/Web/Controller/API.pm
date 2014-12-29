@@ -16,6 +16,16 @@ Catalyst Controller.
 
 =cut
 
+sub auto :Private {
+  my ( $self, $c ) = @_;
+
+  unless ( $c->user_exists ) {
+    $c->stash->{ status } = 404;
+    $c->stash->{ messages } = 'not logged in';
+
+    $c->detach( 'View::JSON' );
+  }
+}
 
 =head2 index
 

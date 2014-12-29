@@ -1,0 +1,66 @@
+<div class="settings-display">
+  <h1>Settings</h1>
+
+  <h2>Username</h2>
+
+  <p>{{ data.username }}</p>
+
+  <h2>Email</h2>
+
+  <p>{{ data.email }}</p>
+
+  <div id="change-pass">
+    <h2>Change Password</h2>
+    <form ng-submit="processPassChange()" name="passChange" novalidate>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+          <input
+            id="password_old"
+            name="password_old"
+            class="form-control"
+            type="password"
+            placeholder="Old Password"
+            ng-model="pass_change.password_old"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+          <input
+            id="password_new"
+            name="password_new"
+            class="form-control"
+            type="password"
+            placeholder="New Password"
+            ng-model="pass_change.password_new"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+          <input
+            id="password_confirm"
+            name="password_confirm"
+            class="form-control"
+            type="password"
+            placeholder="Confirm New Password"
+            ng-model="pass_change.password_confirm"
+            required
+          />
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-warning btn-block"
+        ng-disabled="passChangeSubmitDisabled()"
+      >
+        Change Password
+      </button>
+    </form>
+  </div>
+</div>

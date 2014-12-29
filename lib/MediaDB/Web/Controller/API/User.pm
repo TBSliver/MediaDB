@@ -1,6 +1,7 @@
 package MediaDB::Web::Controller::API::User;
 use Moose;
 use namespace::autoclean;
+use JSON::MaybeXS qw/ JSON /;
 
 BEGIN { extends 'Catalyst::Controller'; }
 
@@ -23,6 +24,34 @@ Catalyst Controller.
 
 sub index :Path :Args(0) {
   my ( $self, $c ) = @_;
+
+  my $user = $c->user;
+
+  $c->stash->{ data } = {
+    username => $user->username,
+    email => $user->email,
+  };
+
+  $c->stash->{ status } = 200;
+}
+
+sub change_pass :Local {
+  my ( $self, $c ) = @_;
+
+  my $user = $c->user;
+  
+  my $password_old = $c->request->body_data->{password_old};
+  my $password_new = $c->request->body_data->{password_new};
+
+  if ( $user->check_password( $password_old ) ) {
+    $user->password( $password_new );
+    $user->update;
+    $user->discard_changes;
+
+    $c->stash->{data} = { success => JSON->true };
+  } else {
+    $c->stash->{data} = { success => JSON->false };
+  }
 
   $c->stash->{ status } = 200;
 }
