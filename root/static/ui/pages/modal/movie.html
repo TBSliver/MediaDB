@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{ heading }}</h3>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-font fa-fw"></i></span>
+      <input
+        id="movie_title"
+        name="movie_title"
+        class="form-control"
+        type="text"
+        placeholder="Movie Title"
+        ng-model="movie.title"
+        required
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-bars fa-fw"></i>
+      </span>
+      <span class="nullable">
+        <select
+          class="form-control"
+          ng-model="movie.location"
+          ng-options="location.id as location.name for location in locations">
+          <option value="">-- Choose Location --</option>
+        </select>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-warning" ng-click="delete()" ng-if="show_delete">Delete</button>
+  <button class="btn btn-primary" ng-click="save()">Save</button>
+  <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+</div>

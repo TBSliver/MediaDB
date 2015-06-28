@@ -7,7 +7,7 @@ function SettingsController ($scope, $http, $modal) {
   $http
     .get('/api/user')
     .success(function(data) {
-      if (data.status === 200) {
+      if (data.success) {
         $scope.data = data.data;
       }
     })
@@ -32,7 +32,7 @@ function SettingsController ($scope, $http, $modal) {
         password_new : $scope.pass_change.password_new
       })
       .success(function(data) {
-        if (data.data.success) {
+        if (data.success) {
           $modal.open({
             templateUrl : '/static/ui/pages/modal/settingsPassChangeSuccess.html'
           });

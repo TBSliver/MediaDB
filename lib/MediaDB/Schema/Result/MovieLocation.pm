@@ -2,7 +2,7 @@ package MediaDB::Schema::Result::MovieLocation;
 
 use DBIx::Class::Candy -autotable => v1;
 
-unique_column movie_id => {
+primary_column movie_id => {
   data_type => 'int',
 };
 

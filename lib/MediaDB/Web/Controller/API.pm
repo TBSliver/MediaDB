@@ -1,6 +1,7 @@
 package MediaDB::Web::Controller::API;
 use Moose;
 use namespace::autoclean;
+use JSON::MaybeXS qw/ JSON /;
 
 BEGIN { extends 'Catalyst::Controller'; }
 
@@ -20,7 +21,7 @@ sub auto :Private {
   my ( $self, $c ) = @_;
 
   unless ( $c->user_exists ) {
-    $c->stash->{ status } = 404;
+    $c->stash->{ success } = JSON->true;
     $c->stash->{ messages } = 'not logged in';
 
     $c->detach( 'View::JSON' );
@@ -34,7 +35,7 @@ sub auto :Private {
 sub index :Path :Args(0) {
   my ( $self, $c ) = @_;
 
-  $c->stash->{ status } = 200;
+  $c->stash->{ success } = JSON->true;
   $c->stash->{ messages } = 'success';
 
 }

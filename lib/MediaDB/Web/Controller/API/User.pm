@@ -32,7 +32,7 @@ sub index :Path :Args(0) {
     email => $user->email,
   };
 
-  $c->stash->{ status } = 200;
+  $c->stash->{ success } = JSON->true;
 }
 
 sub change_pass :Local {
@@ -48,12 +48,11 @@ sub change_pass :Local {
     $user->update;
     $user->discard_changes;
 
-    $c->stash->{data} = { success => JSON->true };
+    $c->stash->{ success } = JSON->true;
   } else {
-    $c->stash->{data} = { success => JSON->false };
+    $c->stash->{ success } = JSON->false;
   }
 
-  $c->stash->{ status } = 200;
 }
 
 =encoding utf8

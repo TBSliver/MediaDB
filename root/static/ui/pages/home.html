@@ -1,5 +1,40 @@
-<div class="jumbotron text-center">
-  <h1>Home Page</h1>
-    
-  <p>{{ message }}</p>
+<div>
+  <h1>Movies</h1>
+  <button class="btn btn-primary" ng-click="add_movie()">
+    Add Movie
+  </button>
+  <table>
+    <tr>
+      <th>Movie Title</th>
+      <th>Movie Location</th>
+      <th>Edit</th>
+    </tr>
+    <tr ng-repeat="movie in movies">
+      <td>{{ movie.title }}</td>
+      <td>{{ movie.location.name }}</td>
+      <td>
+        <button class="btn btn-primary" ng-click="edit_movie( movie.id )">
+          <i class="fa fa-cog fa-fw"></i>
+        </button>
+      </td>
+    </tr>
+  </table>
+  <h1>Locations</h1>
+  <button class="btn btn-primary" ng-click="add_location()">
+    Add Location
+  </button>
+  <table>
+    <tr>
+      <th>Location Name</th>
+      <th>Settings</th>
+    </tr>
+    <tr ng-repeat="location in locations">
+      <td>{{ location.name }}</td>
+      <td>
+        <button class="btn btn-primary" ng-click="edit_location( location.id )" ng-disabled="!location.is_admin">
+          <i class="fa fa-cog fa-fw"></i>
+        </button>
+      </td>
+    </tr>
+  </table>
 </div>

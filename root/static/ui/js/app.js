@@ -11,7 +11,8 @@ angular
     $routeProvider
       .when('/', {
         templateUrl : 'static/ui/pages/home.html',
-        controller  : 'homeController'
+        controller  : 'homeController',
+        css         : 'static/ui/css/home.css'
       })
       .when('/settings', {
         templateUrl : 'static/ui/pages/settings.html',

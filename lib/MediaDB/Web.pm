@@ -68,7 +68,7 @@ __PACKAGE__->config(
   },
 
   'View::JSON' => {
-    expose_stash => [ qw/ data status messages / ],
+    expose_stash => [ qw/ data success message / ],
   },
 );
 

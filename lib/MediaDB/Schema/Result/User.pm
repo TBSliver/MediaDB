@@ -50,11 +50,13 @@ sub add_movie {
     }
   );
 
-  $self->movies->create(
+  my $new_movie = $self->movies->create(
     {
       movie_id => $movie->id,
     }
   );
+
+  return $new_movie;
 }
 
 sub add_location {

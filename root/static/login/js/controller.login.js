@@ -8,7 +8,7 @@ function LoginController ($scope, $http, $modal) {
     $http
       .post('/login/do', $scope.creds)
       .success(function(data) {
-        if (data.data.success) {
+        if (data.success) {
           location.href = data.data.redirect;
         } else {
           $modal.open({

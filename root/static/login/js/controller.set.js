@@ -25,7 +25,7 @@ function SetController ($scope, $routeParams, $modal, $http) {
         password : $scope.creds.password
       })
       .success(function(data) {
-        if (data.data.success) {
+        if (data.success) {
           $modal.open({
             templateUrl : '/static/login/pages/modal/setSuccess.html',
             controller  : 'setModalController',
